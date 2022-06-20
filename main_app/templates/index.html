@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Tedious Tasks</title>
+</head>
+<body>
+    <h1>Tedious Tasks</h1>
+    <h2>No Tasks Exist</h2>
+        <hr/>
+    <h4>Add Tasks </h4>
+
+    <div>
+        <label >Description:</label>
+        <form action="{% url 'add' %}" method = "post">{% csrf_token %}
+           {{form.itemDesciption}} 
+           
+        </form>
+        
+    </div>
+    <br/>
+    
+    <div>
+        <label >Time:</label>
+        <form action="{% url 'add' %}" method = "post">{% csrf_token %}
+            {{form.itemTime}} 
+           
+        </form>
+        
+    </div>
+    <br/>
+
+    <div>
+        <label >Person:</label>
+        <form action="{% url 'add' %}" method = "post">{% csrf_token %}
+            {{form.itemPerson}}
+            
+        </form>
+    </div>
+    <br/>
+
+    <button>Add!</button>
+
+    <thead>
+        <tr>
+            <div>
+                {% for task in all_tasks %} 
+                <th>Description: {{Task.description}}  </th>
+                <th>Time {{task.time}}  </th>
+                <th>Person {{task.person}}  </th>
+                <th>Delete</th>
+                {% endfor %}
+               
+                
+            </div>
+        </tr>
+    </thead>
+
+</body>
+</html>
